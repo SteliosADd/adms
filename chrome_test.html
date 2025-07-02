@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrome Compatibility Test - SneakZone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .test-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .success { background: #4CAF50; }
+        .warning { background: #FF9800; }
+        .error { background: #F44336; }
+        .btn {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Chrome Compatibility Test</h1>
+        <div class="test-card">
+            <h2>Browser Detection</h2>
+            <div id="browser-info"></div>
+        </div>
+        
+        <div class="test-card">
+            <h2>Feature Support</h2>
+            <div id="feature-support"></div>
+        </div>
+        
+        <div class="test-card">
+            <h2>Actions</h2>
+            <button class="btn" onclick="window.location.href='index.php'">Go to Main Site</button>
+            <button class="btn" onclick="runTests()">Run Tests Again</button>
+        </div>
+    </div>
+
+    <script>
+        function detectBrowser() {
+            const userAgent = navigator.userAgent;
+            let browserName = 'Unknown';
+            let browserVersion = 'Unknown';
+            
+            if (userAgent.indexOf('Chrome') > -1 && userAgent.indexOf('Edg') === -1) {
+                browserName = 'Google Chrome';
+                browserVersion = userAgent.match(/Chrome\/(\d+)/)[1];
+            } else if (userAgent.indexOf('Edg') > -1) {
+                browserName = 'Microsoft Edge';
+                browserVersion = userAgent.match(/Edg\/(\d+)/)[1];
+            } else if (userAgent.indexOf('Firefox') > -1) {
+                browserName = 'Mozilla Firefox';
+                browserVersion = userAgent.match(/Firefox\/(\d+)/)[1];
+            } else if (userAgent.indexOf('Safari') > -1) {
+                browserName = 'Safari';
+                browserVersion = userAgent.match(/Version\/(\d+)/)[1];
+            }
+            
+            return { name: browserName, version: browserVersion };
+        }
+        
+        function checkFeatureSupport() {
+            const features = {
+                'CSS Grid': CSS.supports('display', 'grid'),
+                'CSS Flexbox': CSS.supports('display', 'flex'),
+                'CSS Backdrop Filter': CSS.supports('backdrop-filter', 'blur(10px)'),
+                'CSS Custom Properties': CSS.supports('color', 'var(--test)'),
+                'Fetch API': typeof fetch !== 'undefined',
+                'ES6 Arrow Functions': (() => true)(),
+                'Local Storage': typeof localStorage !== 'undefined',
+                'Session Storage': typeof sessionStorage !== 'undefined'
+            };
+            
+            return features;
+        }
+        
+        function runTests() {
+            const browser = detectBrowser();
+            const features = checkFeatureSupport();
+            
+            // Display browser info
+            document.getElementById('browser-info').innerHTML = `
+                <div class="status success">
+                    <strong>Browser:</strong> ${browser.name} ${browser.version}<br>
+                    <strong>User Agent:</strong> ${navigator.userAgent.substring(0, 100)}...
+                </div>
+            `;
+            
+            // Display feature support
+            let featureHtml = '';
+            for (const [feature, supported] of Object.entries(features)) {
+                const statusClass = supported ? 'success' : 'error';
+                const statusText = supported ? '✅ Supported' : '❌ Not Supported';
+                featureHtml += `
+                    <div class="status ${statusClass}">
+                        <strong>${feature}:</strong> ${statusText}
+                    </div>
+                `;
+            }
+            document.getElementById('feature-support').innerHTML = featureHtml;
+        }
+        
+        // Run tests on page load
+        document.addEventListener('DOMContentLoaded', runTests);
+    </script>
+</body>
+</html>

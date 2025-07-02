@@ -1,0 +1,134 @@
+[
+{
+    "type": "header",
+    "version": "5.2.1",
+    "comment": "Export to JSON plugin for PHPMyAdmin"
+},
+{
+    "type": "database",
+    "name": "make websitestore"
+},
+{
+    "type": "table",
+    "name": "cart",
+    "database": "make websitestore",
+    "data": 
+[
+{
+    "id": "1",
+    "user_id": "2",
+    "product_id": "1",
+    "quantity": "2",
+    "added_at": "2025-01-05 00:55:57"
+}
+]
+
+}
+,{
+    "type": "table",
+    "name": "orders",
+    "database": "make websitestore",
+    "data": 
+[
+
+]
+
+}
+,{
+    "type": "table",
+    "name": "order_details",
+    "database": "make websitestore",
+    "data": 
+[
+
+]
+
+}
+,{
+    "type": "table",
+    "name": "products",
+    "database": "make websitestore",
+    "data": 
+[
+{
+    "id": "1",
+    "name": "shoes1",
+    "description": "A great  nike air force",
+    "price": "100.00",
+    "photo": null,
+    "type": "software",
+    "download_link": "http:\/\/example.com\/shoes",
+    "upload_timestamp": "2025-01-05 00:55:57",
+    "seller_id": "1"
+},
+{
+    "id": "2",
+    "name": "shoes2",
+    "description": "A great nike air force",
+    "price": "100.00",
+    "photo": null,
+    "type": "software",
+    "download_link": "http:\/\/example.com\/shoes2",
+    "upload_timestamp": "2025-01-05 00:55:57",
+    "seller_id": "1"
+}
+]
+
+}
+,{
+    "type": "table",
+    "name": "sellers",
+    "database": "make websitestore",
+    "data": 
+[
+
+]
+
+}
+,{
+    "type": "table",
+    "name": "users",
+    "database": "make websitestore",
+    "data": 
+[
+{
+    "id": "1",
+    "username": "seller1",
+    "email": "seller1@example.com",
+    "password": "1234",
+    "role": "seller",
+    "created_at": "2025-01-05 00:55:57",
+    "fullname": "sellerAA"
+},
+{
+    "id": "2",
+    "username": "customer1",
+    "email": "customer1@example.com",
+    "password": "1234",
+    "role": "customer",
+    "created_at": "2025-01-05 00:55:57",
+    "fullname": "customerAA"
+},
+{
+    "id": "7",
+    "username": "testuser",
+    "email": "test@example.com",
+    "password": "123456",
+    "role": "customer",
+    "created_at": "2025-01-07 11:28:23",
+    "fullname": "Test User"
+}
+]
+
+}
+,{
+    "type": "table",
+    "name": "wishlist",
+    "database": "make websitestore",
+    "data": 
+[
+
+]
+
+}
+]

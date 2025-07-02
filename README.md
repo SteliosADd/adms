@@ -1,6 +1,3 @@
-# sneakZone
-
-sneaker web
 # Add to Cart Interaction
 
 A floating cart component that reveals itself when the user adds an item to the cart.
